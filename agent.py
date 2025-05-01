@@ -6,8 +6,7 @@ import time
 from typing import Dict, List, Optional
 from google.adk.agents import Agent
 
-#this is the main agent that will be used to handle the conversation with the leads, 
-#it runs on the url: http://127.0.0.1:8000
+#this is the main agent that will be used to handle the conversation with the leads, it runs on the url: http://127.0.0.1:8000
 
 # For storing informaton in csv file
 lead_sessions = {}
@@ -77,41 +76,64 @@ def start_conversation(lead_id: str, lead_name: str) -> dict:
     Returns:
         dict: Response containing the initial message
     """
-    # Initialize lead session if not exists
-    if lead_id not in lead_sessions:
-        lead_sessions[lead_id] = {
-            'name': lead_name,
-            'current_question': 'consent',
-            'age': '',
-            'country': '',
-            'interest': '',
-            'last_interaction': datetime.datetime.now(),
-            'pending_message': None  
-        }
-       
-        # Add lead to CSV with initial status
-        update_lead_info(lead_id, {
-            'name': lead_name,
-            'status': 'initiated'
-        })
-       
-        # Start follow-up thread for this lead
-        follow_up_thread = threading.Thread(
-            target=schedule_follow_up,
-            args=(lead_id,)
-        )
-        follow_up_thread.daemon = True
-        follow_up_thread.start()
-       
-        return {
-            "status": "success",
-            "message": f"Hey {lead_name}, thank you for filling out the form. I'd like to gather some information from you. Is that okay?"
-        }
-    else:
-        return {
-            "status": "success",
-            "message": f"Welcome back, {lead_name}! Let's continue our conversation."
-        }
+    # Check if this lead_id already exists in CSV
+    if os.path.exists('leads.csv'):
+        with open('leads.csv', 'r', newline='') as file:
+            reader = csv.DictReader(file)
+            for row in reader:
+                if row['lead_id'] == lead_id:
+                    if row['name'] == lead_name:
+                        # Resume conversation
+                        if lead_id not in lead_sessions:
+                            lead_sessions[lead_id] = {
+                                'name': lead_name,
+                                'current_question': 'consent',  # Default to consent
+                                'age': row.get('age', ''),
+                                'country': row.get('country', ''),
+                                'interest': row.get('interest', ''),
+                                'last_interaction': datetime.datetime.now(),
+                                'pending_message': None
+                            }
+                        return {
+                            "status": "success",
+                            "message": f"Welcome back, {lead_name}! Let's continue our conversation."
+                        }
+                    else:
+                        return {
+                            "status": "error",
+                            "message": "⚠️ This Lead ID is already associated with another name. Please provide a unique ID."
+                        }
+
+    # New lead session
+    lead_sessions[lead_id] = {
+        'name': lead_name,
+        'current_question': 'consent',
+        'age': '',
+        'country': '',
+        'interest': '',
+        'last_interaction': datetime.datetime.now(),
+        'pending_message': None  
+    }
+
+    # Add to CSV
+    update_lead_info(lead_id, {
+        'name': lead_name,
+        'status': 'initiated'
+    })
+
+    # Start follow-up scheduler
+    follow_up_thread = threading.Thread(
+        target=schedule_follow_up,
+        args=(lead_id,)
+    )
+    follow_up_thread.daemon = True
+    follow_up_thread.start()
+
+    return {
+        "status": "success",
+        "message": f"Hey {lead_name}, thank you for filling out the form. I'd like to gather some information from you. Is that okay?"
+    }
+
 
 def handle_response(lead_id: str, response: str) -> dict:
     """Processes a response from a lead and moves the conversation forward.
@@ -223,7 +245,7 @@ def send_follow_up(lead_id: str) -> dict:
     }
 
 def schedule_follow_up(lead_id: str):
-    follow_up_delay = 60  # seconds (test value), this value is just for testing, it can be adjusted as required.
+    follow_up_delay = 10 # seconds (test value), this value is just for testing, it can be adjusted as required.
 
     try:
         time.sleep(follow_up_delay)
