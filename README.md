@@ -1,7 +1,7 @@
 
-# 🤖 Sales Agent Conversational System using Google ADK
+# Sales Agent Conversational System using Google ADK
 
-This project implements a **conversational AI sales agent** using the [Google ADK](https://github.com/google/adk) that interacts with leads, collects essential information, follows up on unresponsive users, and stores everything in structured CSV files.
+This project implements a **conversational AI sales agent** using the [Google ADK](https://google.github.io/adk-docs/get-started/quickstart/#run-your-agent) that interacts with leads, collects essential information, follows up on unresponsive users, and stores everything in structured CSV files.
 
 ---
 
@@ -24,10 +24,9 @@ Sales_Agent/
 ├── conversational_agent/
 │   ├── agent.py           # Core agent logic using ADK
 │   ├── simulation.py      # Test cases + manual lead simulation
-│   ├── leads.csv          # Central CSV file for storing all lead data
 │   ├── __init__.py
 │   └── .env               # Optional environment variables
-│
+│── leads.csv          # CSV file for storing all lead data
 └── README.md              # This file
 ```
 
@@ -66,7 +65,7 @@ pip install google-adk
 ```
 
 ### 4. Setup `.env` file
-If you're using any API keys or configs, place them in `.env`.
+Get your Gemini API key, place them in `.env`.
 
 ---
 
@@ -109,12 +108,13 @@ pip install google-adk
 
 ### Step 2: Navigate to your agent directory
 ```bash
-cd conversational_agent
+# move to your parent folder.
+cd parentfolder
 ```
 
 ### Step 3: Run the ADK agent server
 ```bash
-adk run agent.py
+adk web
 ```
 
 This will host your agent locally at:
