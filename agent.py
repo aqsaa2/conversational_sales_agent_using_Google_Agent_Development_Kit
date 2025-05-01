@@ -6,7 +6,8 @@ import time
 from typing import Dict, List, Optional
 from google.adk.agents import Agent
 
-#this is the main agent that will be used to handle the conversation with the leads, it runs on the url: http://127.0.0.1:8000
+#this is the main agent that will be used to handle the conversation with the leads, 
+#it runs on the url: http://127.0.0.1:8000
 
 # For storing informaton in csv file
 lead_sessions = {}
