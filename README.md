@@ -34,8 +34,6 @@ Sales_Agent/
 
 ## 📹 Demo Video
 
-![Demo Screenshot](https://drive.google.com/file/d/1Z6aU0zKKQ0HhOopeOxZM0LOhvx4mKYK5/view?usp=sharing)
-
 
 Full demo of the project:
 
