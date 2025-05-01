@@ -36,7 +36,9 @@ Sales_Agent/
 
 
 Full demo of the project:
+
 Note: Edited with capcut, as the screen recorder didnt record voice.
+
 [▶️ Click here to view the demo](https://drive.google.com/file/d/16zbsCnbjhimLrW3a_nUdClUToQ0jfnnJ/view?usp=sharing)
 
 
