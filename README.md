@@ -64,7 +64,7 @@ Install `google-adk` and any other needed packages:
 pip install google-adk
 ```
 
-### 4. Setup `.env` file
+### 4. Setup `.env` file (optional, current implementation doesn't use python-dotenv)
 Get your Gemini API key, place them in `.env`.
 
 ---
