@@ -236,7 +236,7 @@ def send_follow_up(lead_id: str) -> dict:
    
     # Update status in CSV
     update_lead_info(lead_id, {'status': 'follow_up_sent'})
-   
+   # follow up is sent but not shown on the chat interface, only in terminal, as adk interface requires the user to enter message first in order for agent to respond.
     return {
         "status": "success",
         "message": "Just checking in to see if you're still interested. Let me know when you're ready to continue.",
