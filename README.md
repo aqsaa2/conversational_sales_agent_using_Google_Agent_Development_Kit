@@ -37,10 +37,8 @@ Sales_Agent/
 
 Full demo of the project:
 
-[▶️ Click here to view the demo](https://your-video-link.com)
-
-<!-- Or embed a YouTube video directly (if hosted on YouTube) -->
-[![Watch the demo](https://img.youtube.com/vi/YOUR_VIDEO_ID/0.jpg)](https://www.youtube.com/watch?v=YOUR_VIDEO_ID)
+[▶️ Click here to view the demo](https://drive.google.com/file/d/16zbsCnbjhimLrW3a_nUdClUToQ0jfnnJ/view?usp=sharing)
+[![Watch the demo](https://drive.google.com/file/d/16zbsCnbjhimLrW3a_nUdClUToQ0jfnnJ/view?usp=sharing)
 
 
 ---
