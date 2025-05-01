@@ -13,8 +13,8 @@ lead_sessions = {}
 
 def initialize_csv():
     """Initialize the leads.csv file if it doesn't exist."""
-    if not os.path.exists('D:\Zikra LLC\Sales_Agent_With_ADK_Interface\conversational_agent\leads_data.csv'):
-        with open('D:\Zikra LLC\Sales_Agent_With_ADK_Interface\conversational_agent\leads_data.csv', 'w', newline='') as file:
+    if not os.path.exists('leads.csv'):
+        with open('leads.csv', 'w', newline='') as file:
             writer = csv.writer(file)
             writer.writerow(['lead_id', 'name', 'age', 'country', 'interest', 'status'])
 
@@ -29,8 +29,8 @@ def update_lead_info(lead_id: str, data: Dict):
     existing_data = []
     lead_exists = False
    
-    if os.path.exists('D:\Zikra LLC\Sales_Agent_With_ADK_Interface\conversational_agent\leads_data.csv'):
-        with open('D:\Zikra LLC\Sales_Agent_With_ADK_Interface\conversational_agent\leads_data.csv', 'r', newline='') as file:
+    if os.path.exists('leads.csv'):
+        with open('leads.csv', 'r', newline='') as file:
             reader = csv.reader(file)
             headers = next(reader, None)  
            
@@ -61,7 +61,7 @@ def update_lead_info(lead_id: str, data: Dict):
         existing_data.append(new_row)
    
     
-    with open('D:\Zikra LLC\Sales_Agent_With_ADK_Interface\conversational_agent\leads_data.csv', 'w', newline='') as file:
+    with open('leads.csv', 'w', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(['lead_id', 'name', 'age', 'country', 'interest', 'status'])
         writer.writerows(existing_data)
@@ -85,7 +85,7 @@ def start_conversation(lead_id: str, lead_name: str) -> dict:
             'country': '',
             'interest': '',
             'last_interaction': datetime.datetime.now(),
-            'pending_message': None  # NEW FIELD
+            'pending_message': None  
         }
        
         # Add lead to CSV with initial status
