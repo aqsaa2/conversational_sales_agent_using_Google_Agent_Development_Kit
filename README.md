@@ -8,7 +8,7 @@ This project implements a **conversational AI sales agent** using the [Google AD
 ## 🚀 Features
 
 - Handles multi-step lead conversations (consent → age → country → interest).
-- Tracks lead status (`initiated`, `in_progress`, `secured`, `follow_up_sent`, etc.).
+- Tracks lead status (`initiated`, `in_progress`, `secured`, `follow_up_sent`, `no_response`etc.).
 - Sends follow-up messages to unresponsive leads after a specified timeout.
 - Manages multiple leads simultaneously via in-memory sessions.
 - CSV logging of all lead data (manual and test inputs).
